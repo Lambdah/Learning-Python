@@ -44,6 +44,7 @@ def add_item(cash, item):
 def die(why):
 	# The kill function.
 	print "%s Game over." % why
+	raw_input("")
 	exit(0)
 	
 def car(cycle, backpack):
@@ -210,7 +211,7 @@ def convenience_store(cycle, backpack):
 				robbed = True
 				return robbed
 			else:
-				print "You go back to the car."
+				print "Some equipment is required to rob. You go back to the car."
 		elif cycle == "day":
 			print "You can rob the store with your bear mace or handgun.\n1. Rob the store\n2. Return back to the car"
 			decision = raw_input("> ")
@@ -228,8 +229,10 @@ def convenience_store(cycle, backpack):
 					return robbed
 				else:
 					die("You failed to rob the store. You end up going to jail.")
+			elif "car" in decision or decision == 2:
+				print "You go back to the car."
 			else:
-				print "Back to your car."
+				print "You will need some equipment to rob. You go back to your car."
 	else:
 		die("You never return back to the crime scene.")
 		
@@ -251,12 +254,13 @@ def bank(cycle, backpack):
 			if combo == combination:
 				add_item(1000000, None)
 				print "You got enough money to pay off those mobsters. Excellent."
+				raw_input("")
 				exit(0)
 			else:
 				die("The alarm was tripped and you got caught.")
 		else:
 			print "You will need a flashlight and something to incapcitate the security guard. Do not kill him though."
-	if cycle == "day":
+	elif cycle == "day":
 		if "Handgun" in backpack:
 			print "You wave your gun at the employees and make them move into the corner."
 			combo = safe_combination()
@@ -265,5 +269,7 @@ def bank(cycle, backpack):
 				die("The silent alarm was tripped, you still manage to take away some money but not the entire loot.")
 			else:
 				die("The silent alarm was tripped, and you took too long to get the money.")
+		else:
+			print "You will need some at least a gun to start robbing the bank."
 				
 start(backpack)
