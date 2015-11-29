@@ -6,7 +6,7 @@
 #################################################
 
 # First element is money and the rest will be items that append in the array
-backpack = [0, "Metal Flashlight", "Bear Mace"] 
+backpack = [0] 
 robbed = False
 
 def start(backpack):
